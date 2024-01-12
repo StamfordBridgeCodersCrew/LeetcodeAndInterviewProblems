@@ -12,7 +12,8 @@ public class NumberOfProvinces {
         */
         public static void bfs1(List<List<Integer>> g, int source, Set<Integer> visited ) {
 
-                // Insert the source vertex in the Q
+                // 1.1 Create an empty queue
+                // 1.2 Push the source node into Q (Mark it as visited)
                 List<Integer> q = new LinkedList<>();
                 q.add(source);
 
@@ -20,28 +21,19 @@ public class NumberOfProvinces {
                 visited.add(source);
 
                 while(!q.isEmpty()) {
-                        /*
-                        Take out the element from the front of the Q
-                        int u = q.front()
-                        q.pop();
-
-                        * */
+                        // 2.1 Dequeue the front node from the q
                         int u = q.remove(0);
 
                         /*
                         u = Current vertex
                         v = Adjacent vertices to u
 
-                        for each adjacent neighbor of u
-                        If v  aint visited earlier
-                        Visit it
+                        Probe for all the adjacent neighbors of u (i.e v)
+                        If they(v) aint visited earlier, Visit them(Enqueue them, Mark hem as visited)
                         */
                         for(int v : g.get(u)) {
                                 if(!visited.contains(v)) {
-                                        // Add to the Q
                                         q.add(v);
-
-                                        // Update visited
                                         visited.add(v);
                                 }
                         }
