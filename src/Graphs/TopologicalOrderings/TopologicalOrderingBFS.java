@@ -12,6 +12,14 @@ class Edge {
 	}
 }
 
+/*
+* Graph = Represents a Graph
+* 	n = No of vertices of the Graph
+* 	edges = Edge information of the Graph
+*
+* Others
+* 	adjList, indegree = Constructed using information (n, edges)
+* */
 class Graph {
 
 	// n, edges = Used by the constructor
@@ -76,17 +84,17 @@ public class TopologicalOrderingBFS {
 			L.add(u);
 
 			/*
-			2. For all adjacent neighbors(v) of u
-				2.1 Remove edge u-->v (Decrease indegree[v] by 1)
-				2.2 If now, v has no incoming edges(indegree[v] == 0), Insert it into q
+			3. For all adjacent neighbors(v) of u
+				3.1 Remove edge u-->v (Decrease indegree[v] by 1)
+				3.2 If now, v has no incoming edges(indegree[v] == 0), Insert it into q
 
 			*/
 			for(int v : g.adjList.get(u)) {
-				// 2.1 Remove edge u-->v (Decrease indegree[v] by 1)
+				// 3.1 Remove edge u-->v (Decrease indegree[v] by 1)
 				// indegree[v] = indegree[v] - 1;
 				indegree.set(v, indegree.get(v)-1);
 
-				// 2.2 If now, v has no incoming edges(indegree[v] == 0), Insert it into L
+				// 3.2 If now, v has no incoming edges(indegree[v] == 0), Insert it into L
 				if(indegree.get(v) == 0) {
 					q.add(v);
 				}
